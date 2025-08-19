@@ -1,0 +1,11 @@
+{
+  "Author": "iamkaf",
+  "Name": "Cha-Ching",
+  "Punchline": "See the gil flow in!",
+  "Description": "When you gain gil, a popup will appear on screen announcing the amount.",
+  "ApplicableVersion": "any",
+  "Tags": [
+    "plugin",
+    "gil"
+  ]
+}
