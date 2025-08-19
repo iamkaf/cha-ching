@@ -1,76 +1,73 @@
-> ⚠️ **Don't click Fork!**
-> 
-> This is a GitHub Template repo. If you want to use this for a plugin, [use this template][new-repo] to make a new repo!
->
-> ![image](https://github.com/goatcorp/SamplePlugin/assets/16760685/d9732094-e1ed-4769-a70b-58ed2b92580c)
+# Cha-Ching
 
-# SamplePlugin
+A Dalamud plugin for Final Fantasy XIV that provides visual notifications (FlyText) for gil gains and losses, and displays your current gil in a dedicated UI window.
 
-[![Use This Template badge](https://img.shields.io/badge/Use%20This%20Template-0?logo=github&labelColor=grey)][new-repo]
+## Features
 
+*   **Gil Change Notifications:** Get instant FlyText notifications directly on your character for gil gains and losses.
+    *   **Gains:** Displayed in yellow with a `+` prefix.
+    *   **Losses:** Displayed in red with a `-` prefix.
+*   **Configurable Popups:** Easily enable or disable notifications for gil losses via the plugin's configuration UI.
+*   **Current Gil Display:** A dedicated main UI window to continuously display your current gil amount.
 
-Simple example plugin for Dalamud.
+## Installation
 
-This is not designed to be the simplest possible example, but it is also not designed to cover everything you might want to do. For more detailed questions, come ask in [the Discord](https://discord.gg/holdshift).
+Cha-Ching is a Dalamud plugin and requires [XIVLauncher](https://github.com/goatcorp/FFXIVQuickLauncher/releases) to be installed.
 
-## Main Points
+### Local Installation
 
-* Simple functional plugin
-  * Slash command
-  * Main UI
-  * Settings UI
-  * Image loading
-  * Plugin json
-* Simple, slightly-improved plugin configuration handling
-* Project organization
-  * Copies all necessary plugin files to the output directory
-    * Does not copy dependencies that are provided by dalamud
-    * Output directory can be zipped directly and have exactly what is required
-  * Hides data files from visual studio to reduce clutter
-    * Also allows having data files in different paths than VS would usually allow if done in the IDE directly
+1.  Launch the game using **XIVLauncher**.
+2.  Log in to a character.
+3.  In the chat box, type the command `/xlplugins` to open the Dalamud plugin installer.
+4.  Go to the **"Settings"** tab.
+5.  Scroll down to the **"Experimental"** section.
+6.  Click the **"+"** button next to "Dev Plugins".
+7.  In the text box that appears, enter the path to your built plugin's debug dll.
+8.  Click the **"Save and Close"** button.
 
+## Usage
 
-The intention is less that any of this is used directly in other projects, and more to show how similar things can be done.
+### Configuration UI
 
-## How To Use
+To access the plugin's settings:
+1.  Open the Dalamud plugin installer (`/xlplugins`).
+2.  Find "Cha-Ching" in your installed plugins.
+3.  Click the **"Config"** button.
 
-### Getting Started
+Here you will find the **"Enable Negative Popups"** checkbox. Toggle this to enable or disable FlyText notifications for gil losses.
 
-To begin, [clone this template repository][new-repo] to your own GitHub account. This will automatically bring in everything you need to get a jumpstart on development. You do not need to fork this repository unless you intend to contribute modifications to it.
+### Main UI (Current Gil Display)
 
-Be sure to also check out the [Dalamud Developer Docs][dalamud-docs] for helpful information about building your own plugin. The Developer Docs includes helpful information about all sorts of things, including [how to submit][submit] your newly-created plugin to the official repository. Assuming you use this template repository, the provided project build configuration and license are already chosen to make everything a breeze.
+To open the window displaying your current gil:
+1.  Open the Dalamud plugin installer (`/xlplugins`).
+2.  Find "Cha-Ching" in your installed plugins.
+3.  Click the **"Main"** button.
 
-[new-repo]: https://github.com/new?template_name=SamplePlugin&template_owner=goatcorp
-[dalamud-docs]: https://dalamud.dev
-[submit]: https://dalamud.dev/plugin-publishing/submission
+Your current gil amount will be displayed in this window and will update in real-time.
 
-### Prerequisites
+## Building from Source (Optional)
 
-SamplePlugin assumes all the following prerequisites are met:
+If you wish to build Cha-Ching from its source code, you will need:
+*   **Final Fantasy XIV** installed.
+*   **XIVLauncher** installed.
+*   **.NET 8 SDK (x64)** from the [official Microsoft .NET website](https://dotnet.microsoft.com/en-us/download/dotnet/8.0).
+*   An IDE like **Visual Studio 2022 Community** (with ".NET desktop development" workload) or **JetBrains Rider**.
 
-* XIVLauncher, FINAL FANTASY XIV, and Dalamud have all been installed and the game has been run with Dalamud at least once.
-* XIVLauncher is installed to its default directories and configurations.
-  * If a custom path is required for Dalamud's dev directory, it must be set with the `DALAMUD_HOME` environment variable.
-* A .NET Core 8 SDK has been installed and configured, or is otherwise available. (In most cases, the IDE will take care of this.)
+1.  Clone the repository:
+    `git clone https://github.com/iamkaf/ChaChing.git` (Replace with actual repo link)
+2.  Navigate to the plugin directory:
+    `cd ChaChing/ChaChing`
+3.  Build the project:
+    `dotnet build`
 
-### Building
+The compiled `.dll` will be in `ChaChing/ChaChing/bin/Debug/` (or `Release/`).
 
-1. Open up `SamplePlugin.sln` in your C# editor of choice (likely [Visual Studio 2022](https://visualstudio.microsoft.com) or [JetBrains Rider](https://www.jetbrains.com/rider/)).
-2. Build the solution. By default, this will build a `Debug` build, but you can switch to `Release` in your IDE.
-3. The resulting plugin can be found at `SamplePlugin/bin/x64/Debug/SamplePlugin.dll` (or `Release` if appropriate.)
+## Credits and Acknowledgements
 
-### Activating in-game
+*   Developed using the **Dalamud** plugin framework.
+*   Utilizes **FFXIVClientStructs** for direct game memory access.
+*   Inspired by the **PatMe** plugin for its configuration and UI patterns.
 
-1. Launch the game and use `/xlsettings` in chat or `xlsettings` in the Dalamud Console to open up the Dalamud settings.
-    * In here, go to `Experimental`, and add the full path to the `SamplePlugin.dll` to the list of Dev Plugin Locations.
-2. Next, use `/xlplugins` (chat) or `xlplugins` (console) to open up the Plugin Installer.
-    * In here, go to `Dev Tools > Installed Dev Plugins`, and the `SamplePlugin` should be visible. Enable it.
-3. You should now be able to use `/pmycommand` (chat) or `pmycommand` (console)!
+---
 
-Note that you only need to add it to the Dev Plugin Locations once (Step 1); it is preserved afterwards. You can disable, enable, or load your plugin on startup through the Plugin Installer.
-
-### Reconfiguring for your own uses
-
-Replace all references to `SamplePlugin` in all the files and filenames with your desired name, then start building the plugin of your dreams. You'll figure it out 😁
-
-Dalamud will load the JSON file (by default, `SamplePlugin/SamplePlugin.json`) next to your DLL and use it for metadata, including the description for your plugin in the Plugin Installer. Make sure to update this with information relevant to _your_ plugin!
+**Note:** This plugin is a third-party tool and is not officially supported by Square Enix. Use at your own discretion.
